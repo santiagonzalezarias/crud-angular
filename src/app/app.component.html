@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <ul class="list-group">
+        <li
+          *ngFor="let student of studentsArray"
+          class="list-group-item list-group-item-action"
+          (click)="edit(student)"
+          [class.active]="student == selectedStudent"
+        >
+          <span class="badge bg-primary p-2 me-4">{{ student.id }}</span
+          >{{ student.name }} {{ student.lastname }} - {{ student.edad }} años
+        </li>
+      </ul>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-title">Insertar nuevo estudiante</div>
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="selectedStudent.name"
+              placeholder="Ingrese nombre"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="selectedStudent.lastname"
+              placeholder="Ingrese apellido"
+              class="form-control mt-4"
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="selectedStudent.edad"
+              class="form-control mt-4"
+              placeholder="Edad"
+            />
+          </div>
+          <button (click)="submit()" class="btn btn-primary mt-4">
+            Enviar
+          </button>
+
+          <button
+            *ngIf="selectedStudent.id != 0"
+            class="btn btn-danger mt-4 ms-4"
+            (click)="delete()"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
